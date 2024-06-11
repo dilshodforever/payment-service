@@ -26,7 +26,7 @@ func (c *PaymentService) CreatePayment(ctx context.Context, Payment *pb.Payment)
 }
 
 func (c *PaymentService) GetAllPayments(ctx context.Context, pb *pb.Payment) (*pb.GetAllPayments, error) {
-	Payments, err := c.stg.Payment().GetAllPayment(pb)
+	Payments, err := c.stg.Payment().GetAllPayments(pb)
 	if err != nil {
 		log.Print(err)
 	}

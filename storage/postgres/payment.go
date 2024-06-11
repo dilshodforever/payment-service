@@ -46,7 +46,7 @@ func (p *PaymentStorage) GetByIdPayment(id *pb.ById) (*pb.Payment, error) {
 }
 
 
-func (p *PaymentStorage) GetAllPayment(rest *pb.Payment) (*pb.GetAllPayments, error) {
+func (p *PaymentStorage) GetAllPayments(rest *pb.Payment) (*pb.GetAllPayments, error) {
 	Payment := &pb.GetAllPayments{}
 	var query string
 	query = ` SELECT reservation_id, amount, payment_method, payment_status from payments 
