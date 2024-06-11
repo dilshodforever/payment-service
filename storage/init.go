@@ -10,7 +10,7 @@ type InitRoot interface {
 type Payment interface {
 	CreatePayment(Payment *pb.Payment) (*pb.Void, error)
 	GetByIdPayment(id *pb.ById) (*pb.Payment, error)
-	GetAllPayment(_ *pb.Payment) (*pb.GetAllPayments, error)
+	GetAllPayments(_ *pb.Payment) (*pb.GetAllPayments, error)
 	UpdatePayment(Payment *pb.Payment) (*pb.Void, error)
 	DeletePayment(id *pb.ById) (*pb.Void, error)
 }
