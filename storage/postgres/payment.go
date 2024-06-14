@@ -32,7 +32,7 @@ func (p *PaymentStorage) CreatePayment(payment *pb.Payment) (*pb.Void, error) {
 func (p *PaymentStorage) GetByIdPayment(id *pb.ById) (*pb.Payment, error) {
 	query := `
 			SELECT reservation_id, amount, payment_method, payment_status from payments 
-			where id =$1 and delated_at=0
+			where id =$1 and deleted_at=0
 		`
 	row := p.db.QueryRow(query, id.Id)
 
@@ -50,7 +50,7 @@ func (p *PaymentStorage) GetAllPayments(rest *pb.Payment) (*pb.GetAllPayments, e
 	Payment := &pb.GetAllPayments{}
 	var query string
 	query = ` SELECT reservation_id, amount, payment_method, payment_status from payments 
-			where delated_at=0 `
+			where deleted_at=0 `
 	var arr []interface{}
 	count := 1
 	if len(rest.ReservationId) > 0 {
@@ -86,7 +86,7 @@ func (p *PaymentStorage) UpdatePayment(Payment *pb.Payment) (*pb.Void, error) {
 
 func (p *PaymentStorage) DeletePayment(id *pb.ById) (*pb.Void, error) {
 	query := `
-		update from payments set delated_at=$1
+		update from payments set deleted_at=$1
 		where id = $2
 	`
 	_, err := p.db.Exec(query, time.Now().Unix(), id.Id)
